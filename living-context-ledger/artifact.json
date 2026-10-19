@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ontology.clarkvalberg.com/applied-artifact.schema.json",
+  "id": "living-context-ledger",
+  "title": "Living Context Ledger",
+  "version": "1.0.0",
+  "status": "prototype",
+  "url": "https://clarkvalberg.github.io/clark-public-previews/living-context-ledger/",
+  "designSystem": {
+    "id": "ontology",
+    "version": "2.4.0",
+    "profile": "ontology-2",
+    "contractHash": "75872f81b1b10aebb0c745387e4a1b20cc4240592c06e85b342347a170ad89fe",
+    "authority": "https://ontology.clarkvalberg.com/"
+  },
+  "composition": [
+    "answer-first context hygiene thesis",
+    "reader librarian checker processing contract",
+    "local-only file analysis workspace",
+    "claim freshness scorecard",
+    "filterable refresh queue",
+    "exportable machine-readable ledger",
+    "success failure and reuse judgment"
+  ],
+  "signals": [
+    {"selector": "[data-ontology-signal=\"verified\"]", "meaning": "verified"},
+    {"selector": "[data-ontology-signal=\"current\"]", "meaning": "current"},
+    {"selector": "[data-ontology-signal=\"active\"]", "meaning": "active"},
+    {"selector": ".focus-scope", "meaning": "focus"},
+    {"selector": ".button", "meaning": "focus"},
+    {"selector": ".filter", "meaning": "focus"},
+    {"selector": ".focus-link", "meaning": "focus"},
+    {"selector": ".skip-link", "meaning": "focus"}
+  ],
+  "verification": {
+    "viewports": ["1440x1000", "1024x768", "768x1024", "390x844", "320x700"],
+    "themes": ["dark", "light"],
+    "wcag": "2.2 AA",
+    "keyboard": true,
+    "runtimeFontNetwork": false
+  }
+}

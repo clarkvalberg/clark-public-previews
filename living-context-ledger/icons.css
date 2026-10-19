@@ -1,0 +1,28 @@
+.ontology-icon {
+  display: inline-block;
+  inline-size: 1.15em;
+  block-size: 1.15em;
+  flex: 0 0 auto;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.ontology-icon-button,
+.ontology-icon-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ontology-icon-label {
+  gap: 0.625em;
+}
+
+.ontology-icon-button {
+  min-inline-size: 24px;
+  min-block-size: 24px;
+}

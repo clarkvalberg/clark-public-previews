@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Living Context Ledger</title>
+  <link rel="stylesheet" href="house.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <svg class="sprite" aria-hidden="true"><use href="icons.svg#check"></use></svg>
+  <header class="topbar">
+    <a class="brand focus-link" href="#top" aria-label="Living Context Ledger home">
+      <span class="brand-mark">LCL</span>
+      <span>Living Context Ledger</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="privacy-state" data-ontology-signal="verified">Local only · zero uploads</span>
+      <button class="button button-quiet" id="themeToggle" type="button" aria-label="Switch to light mode">Light mode</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Claim-level context hygiene · Prototype 01</p>
+      <h1 id="hero-title">Stale context should announce itself.</h1>
+      <div class="hero-grid">
+        <p class="lede">Load the evidence files your agents already use. The ledger separates collection, synthesis, and doubt—then turns aging claims into a traceable refresh queue.</p>
+        <div class="principle-ledger" aria-label="Processing contract">
+          <div><span>01 / Reader</span><strong>Preserves source facts</strong></div>
+          <div><span>02 / Librarian</span><strong>Maps claims and dates</strong></div>
+          <div><span>03 / Checker</span><strong>Flags doubt, never overwrites</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="workspace" aria-labelledby="workspace-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Private workspace</p>
+          <h2 id="workspace-title">Load evidence</h2>
+        </div>
+        <p>Files are parsed in this browser tab. The page has no network permission.</p>
+      </div>
+
+      <div class="input-grid">
+        <label class="file-control focus-scope" for="contextFile">
+          <span class="file-index">01</span>
+          <span class="file-copy"><strong>Operating context index</strong><small id="contextStatus">Choose operating-context-index.json</small></span>
+          <input id="contextFile" type="file" accept="application/json,.json">
+          <span class="button file-button">Choose file</span>
+        </label>
+        <label class="file-control focus-scope" for="tasksFile">
+          <span class="file-index">02</span>
+          <span class="file-copy"><strong>Task registry</strong><small id="tasksStatus">Choose task-registry.json</small></span>
+          <input id="tasksFile" type="file" accept="application/json,.json">
+          <span class="button file-button">Choose file</span>
+        </label>
+      </div>
+
+      <div class="workspace-actions">
+        <button class="button button-primary" id="analyzeButton" type="button" disabled>Analyze files</button>
+        <button class="button" id="sampleButton" type="button">Try safe sample</button>
+        <button class="button" id="clearButton" type="button">Clear</button>
+        <span class="action-note" id="actionNote" role="status" aria-live="polite">Add both files, or use the safe sample.</span>
+      </div>
+      <div class="error-banner" id="errorBanner" role="alert" hidden></div>
+    </section>
+
+    <section class="results" id="results" aria-labelledby="results-title" hidden>
+      <div class="section-heading results-heading">
+        <div>
+          <p class="eyebrow">Checker output</p>
+          <h2 id="results-title">Refresh queue</h2>
+        </div>
+        <button class="button" id="exportButton" type="button">
+          <svg class="ontology-icon" aria-hidden="true"><use href="icons.svg#arrow-forward"></use></svg>
+          Export JSON
+        </button>
+      </div>
+
+      <div class="metrics" aria-label="Ledger summary">
+        <div class="metric"><span>Claims mapped</span><strong id="metricClaims">0</strong></div>
+        <div class="metric"><span>Current</span><strong id="metricCurrent" data-ontology-signal="current">0</strong></div>
+        <div class="metric"><span>Aging</span><strong id="metricAging">0</strong></div>
+        <div class="metric"><span>Stale / unknown</span><strong id="metricStale">0</strong></div>
+        <div class="metric"><span>Doubt flags</span><strong id="metricFlags">0</strong></div>
+      </div>
+
+      <div class="filter-row" aria-label="Filter refresh queue">
+        <button class="filter is-active" data-filter="all" data-ontology-signal="active" type="button">All</button>
+        <button class="filter" data-filter="stale" type="button">Stale</button>
+        <button class="filter" data-filter="aging" type="button">Aging</button>
+        <button class="filter" data-filter="current" type="button">Current</button>
+        <button class="filter" data-filter="unknown" type="button">Unknown</button>
+      </div>
+
+      <div class="queue" id="queue" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <p class="eyebrow">No matching claims</p>
+        <h3>The selected filter is clear.</h3>
+        <p>Choose another status or load newer evidence.</p>
+      </div>
+    </section>
+
+    <section class="judgment" aria-labelledby="judgment-title">
+      <p class="eyebrow">What this tests</p>
+      <h2 id="judgment-title">Doubt is a first-class output.</h2>
+      <div class="judgment-grid">
+        <div>
+          <span class="label">Success</span>
+          <p>A useful queue points back to exact files, dates, and states while keeping private source data inside the browser.</p>
+        </div>
+        <div>
+          <span class="label">Failure value</span>
+          <p>If timestamp and state heuristics are noisy, typed claim semantics—not more autonomous writers—are the next dependency.</p>
+        </div>
+        <div>
+          <span class="label">Reuse</span>
+          <p>Scope the next operating-context refresh and improve daily need maps before another automation treats old evidence as current.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Living Context Ledger · 2026-10-19</span>
+    <a class="focus-link" href="https://x.com/i/status/2111837226006921640" target="_blank" rel="noopener noreferrer">
+      Source post
+      <svg class="ontology-icon" aria-hidden="true"><use href="icons.svg#arrow-external"></use></svg>
+    </a>
+  </footer>
+</body>
+</html>
