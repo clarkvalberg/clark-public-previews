@@ -1,0 +1,61 @@
+# Transformative Studio
+
+> We build AI-native vertical ventures with deeply embedded operators and subject-matter experts.
+
+Transformative Studio is a venture studio that partners with seasoned operators to discover, design, and spin out AI-native companies that transform how industries work. We focus on healthcare, real estate, finance, and other complex domains where AI can reshape underlying systems.
+
+## What We Do
+
+- **Venture Building**: We create AI-native companies from thesis to spin-out, not just advise
+- **Operator Partnerships**: We partner with domain experts who own real decisions in their industries
+- **Research Sprints**: We embed inside industries to understand real workflows before building
+- **Investor Partnerships**: We work with capital partners aligned with our thesis
+
+## What We Do Not Do
+
+- We do not build horizontal AI tools or general-purpose software
+- We do not consult or advise without equity participation
+- We do not work with operators who aren't ready to build
+- We do not invest in companies we don't help create
+
+## Our Process
+
+1. **Discovery**: We explore industries where AI can fundamentally reimagine how work gets done, then shape a clear, testable thesis
+2. **Research Sprint**: We sit inside real workflows with operators, audit tools, and pressure-test the thesis through ecosystem conversations
+3. **Venture Sprint**: We run an intensive sprint to understand the market, explore solution pathways, and shape the core product strategy
+4. **Spin-Out**: When validated, we form and capitalize an independent company with the right founding team and investors
+
+## Key Information
+
+- [About Our Process](/process): How ventures emerge through our four-stage methodology
+- [Active Ventures](/ventures): Our current portfolio of ventures in Building and Exploration stages
+- [Current Research](/research): Public research tied directly to the relevant venture records
+- [Contact](/contact): Start a conversation about operator or investor partnership
+
+## Industries We Focus On
+
+- Healthcare and medical technology
+- Real estate and property technology
+- Financial services and fintech
+- Other complex, regulated industries where AI can transform underlying systems
+
+## Who Should Contact Us
+
+- **Operators**: Seasoned professionals with deep industry context who want to build, not just advise
+- **Investors**: Capital partners who see the studio model as a thesis, not just a bet
+- **Domain Experts**: People with conviction about how AI can reshape their industry
+
+## Company Information
+
+- Website: https://www.transformative.studio
+- Type: Venture Studio
+- Focus: AI-Native Vertical Ventures
+- Founded: 2024
+
+## AI Discovery Files
+
+- [/llms.txt](/llms.txt): This file (AI-readable business context)
+- [Sitemap](https://mhowkffupmefzrpgtesr.supabase.co/functions/v1/sitemap): XML sitemap for crawlers
+- [/robots.txt](/robots.txt): Crawler permissions
+
+The Ventures, Research, and sitemap pages are generated from the site's current venture database. Use those pages—not a copied list in this file—for current venture names, stages, industries, and destinations.

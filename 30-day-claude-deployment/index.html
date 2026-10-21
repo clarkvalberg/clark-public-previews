@@ -1,241 +1,64 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="A fixed 30-day Claude deployment for knowledge-work firms: secure setup, role-based training, working workflows, and measured adoption.">
-  <title>The 30-Day Claude Deployment · Transformative</title>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600&f[]=switzer@400,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="tokens.css">
-  <style>
-    /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
-     * genre: modern-minimal · macrostructure: Narrative Workflow · theme: Quiet
-     * tone: editorial, exacting, operator-led · anchor hue: signal red
-     * enrichment: Tier-A readiness instrument · nav: N9 · footer: Ft5
-     * contrast: pass (46–50) · slop: pass (51–55) · honest: pass (56)
-     * chrome: pass (57) · tokens: pass (58) · responsive: pass (36, 59, 61–69) · icons: pass (60)
-     */
-    * { box-sizing: border-box; }
-    html, body { margin: 0; overflow-x: clip; scroll-behavior: smooth; }
-    body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.58; }
-    button, a { font: inherit; }
-    a { color: inherit; text-decoration: none; }
-    :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
-    .shell { width: min(100%, var(--page-max)); margin-inline: auto; padding-inline: var(--page-gutter); }
-    .nav { min-height: 5.25rem; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); border-bottom: var(--rule-hair) solid var(--color-rule); }
-    .wordmark { font-family: var(--font-outlier); font-size: var(--text-sm); letter-spacing: -0.02em; white-space: nowrap; }
-    .nav__cta, .button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius-pill); padding: 0.68rem 1.08rem; white-space: nowrap; transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
-    .nav__cta[aria-disabled="true"], .button[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
-    .button--solid { background: var(--color-ink); color: var(--color-paper); }
-    @media (hover:hover) { .nav__cta:hover, .button:hover { transform: translateY(-1px); background: var(--color-ink); color: var(--color-paper); } .button--solid:hover { background: var(--color-ink-2); } }
-    .nav__cta:active, .button:active { transform: translateY(1px); }
-    .hero { padding-block: clamp(4rem, 7vw, 6rem) clamp(6rem, 11vw, 10rem); display: grid; gap: var(--space-2xl); }
-    .hero__copy { display: grid; gap: var(--space-xl); align-content: start; }
-    .kicker { margin: 0; color: var(--color-neutral); font-family: var(--font-body); font-weight: 600; font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
-    h1, h2, h3, p { margin: 0; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.035em; overflow-wrap: anywhere; min-width: 0; }
-    h1 { font-size: var(--text-display); line-height: 0.98; max-width: 10ch; }
-    .hero__lede { max-width: 55ch; color: var(--color-ink-2); font-size: var(--text-md); line-height: 1.48; }
-    .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
-    .instrument { border: var(--rule-hair) solid var(--color-rule-2); border-radius: var(--radius-md); background: var(--color-paper-2); padding: clamp(1.25rem, 3vw, 2.25rem); align-self: stretch; display: grid; gap: var(--space-xl); }
-    .instrument__top { display: flex; justify-content: space-between; gap: var(--space-md); align-items: baseline; }
-    .instrument__top strong { font-family: var(--font-display); font-size: var(--text-md); }
-    .instrument__top span { font-family: var(--font-body); font-weight: 600; font-size: var(--text-xs); color: var(--color-neutral); }
-    .score { display: grid; grid-template-columns: auto minmax(0,1fr); gap: var(--space-lg); align-items: center; }
-    .score__number { width: 7rem; height: 7rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--color-accent) 0 38%, var(--color-paper-3) 38% 100%); position: relative; font-family: var(--font-outlier); font-size: var(--text-2xl); font-weight: 500; font-variant-numeric: tabular-nums; }
-    .score__number::after { content: ""; position: absolute; inset: 0.65rem; border-radius: 50%; background: var(--color-paper-2); }
-    .score__number span { position: relative; z-index: var(--z-base); }
-    .bars { display: grid; gap: var(--space-md); }
-    .bar { display: grid; gap: var(--space-xs); }
-    .bar__label { display: flex; justify-content: space-between; gap: var(--space-md); font-size: var(--text-sm); }
-    .bar__track { height: 0.35rem; background: var(--color-paper-3); overflow: clip; border-radius: var(--radius-pill); }
-    .bar__fill { height: 100%; width: var(--w); background: var(--color-ink); transform-origin: left; animation: fill var(--dur-slow) var(--ease-out) both; }
-    @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-    .instrument__note { padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); color: var(--color-neutral); font-size: var(--text-sm); }
-    .premise { background: var(--color-ink); color: var(--color-paper); padding-block: clamp(4rem, 10vw, 8rem); }
-    .premise__grid { display: grid; gap: var(--space-2xl); }
-    .premise h2 { font-size: clamp(2.35rem, 5vw, 4.8rem); line-height: 1.03; max-width: 14ch; }
-    .premise__copy { display: grid; gap: var(--space-lg); max-width: 52ch; color: var(--color-paper-3); font-size: var(--text-md); }
-    .premise__copy strong { color: var(--color-paper); }
-    .workflow { padding-block: var(--space-4xl); }
-    .section-head { display: grid; gap: var(--space-md); margin-bottom: var(--space-3xl); }
-    .section-head h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.04; max-width: 15ch; }
-    .section-head p { max-width: 55ch; color: var(--color-neutral); font-size: var(--text-md); }
-    .stages { list-style: none; padding: 0; margin: 0; border-top: var(--rule-heavy) solid var(--color-ink); }
-    .stage { display: grid; gap: var(--space-lg); padding-block: var(--space-2xl); border-bottom: var(--rule-hair) solid var(--color-rule-2); }
-    .stage__time { font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm); color: var(--color-neutral); }
-    .stage h3 { font-size: var(--text-xl); line-height: 1.1; }
-    .stage p { color: var(--color-ink-2); max-width: 45ch; }
-    .stage__output { align-self: start; background: var(--color-paper-2); border-radius: var(--radius-sm); padding: var(--space-lg); display: grid; gap: var(--space-xs); }
-    .stage__output span { font-family: var(--font-body); font-weight: 600; font-size: var(--text-xs); color: var(--color-neutral); text-transform: uppercase; letter-spacing: 0.07em; }
-    .stage__output strong { font-family: var(--font-display); font-weight: 600; }
-    .outcomes { padding-block: 0 var(--space-4xl); }
-    .outcome-grid { display: grid; border-top: var(--rule-heavy) solid var(--color-ink); }
-    .outcome { padding-block: var(--space-xl); border-bottom: var(--rule-hair) solid var(--color-rule-2); display: grid; gap: var(--space-sm); }
-    .outcome__index { font-family: var(--font-body); font-weight: 600; color: var(--color-neutral); font-size: var(--text-xs); }
-    .outcome h3 { font-size: var(--text-lg); }
-    .outcome p { color: var(--color-neutral); max-width: 45ch; }
-    .measurement { background: var(--color-paper-2); padding-block: var(--space-4xl); }
-    .measure-grid { display: grid; gap: var(--space-2xl); }
-    .measure-copy { display: grid; align-content: start; gap: var(--space-lg); }
-    .measure-copy h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.02; max-width: 11ch; }
-    .measure-copy p { color: var(--color-ink-2); max-width: 48ch; }
-    .compare { border-top: var(--rule-heavy) solid var(--color-ink); }
-    .compare__row { display: grid; gap: var(--space-sm); padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule-2); }
-    .compare__name { font-weight: 600; }
-    .compare__method { color: var(--color-neutral); }
-    .compare__when { font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm); }
-    .fit { padding-block: var(--space-4xl); }
-    .fit-grid { display: grid; gap: var(--space-2xl); }
-    .fit h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1.02; max-width: 13ch; }
-    .fit-columns { display: grid; gap: var(--space-xl); }
-    .fit-list { margin: 0; padding: 0; list-style: none; border-top: var(--rule-heavy) solid var(--color-ink); }
-    .fit-list li { padding-block: var(--space-md); border-bottom: var(--rule-hair) solid var(--color-rule); display: flex; gap: var(--space-sm); }
-    .fit-list svg { flex: 0 0 auto; margin-top: 0.3rem; }
-    .commercial { margin-top: var(--space-3xl); background: var(--color-ink); color: var(--color-paper); padding: clamp(1.5rem, 4vw, 3rem); border-radius: var(--radius-md); display: grid; gap: var(--space-xl); }
-    .commercial h3 { font-size: var(--text-2xl); line-height: 1.05; max-width: 14ch; }
-    .commercial p { color: var(--color-paper-3); max-width: 55ch; }
-    .commercial .button { background: var(--color-paper); color: var(--color-ink); border-color: var(--color-paper); justify-self: start; }
-    .faq { padding-block: 0 var(--space-4xl); }
-    .faq h2 { font-size: var(--text-2xl); margin-bottom: var(--space-xl); }
-    details { border-top: var(--rule-hair) solid var(--color-rule-2); }
-    details:last-child { border-bottom: var(--rule-hair) solid var(--color-rule-2); }
-    summary { cursor: pointer; min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); font-family: var(--font-display); font-weight: 600; list-style: none; }
-    summary::-webkit-details-marker { display: none; }
-    summary svg { transition: transform var(--dur-fast) var(--ease-out); flex: 0 0 auto; }
-    summary:active svg { transform: scale(0.92); }
-    details[open] summary svg { transform: rotate(45deg); }
-    details p { color: var(--color-neutral); max-width: 65ch; padding-bottom: var(--space-lg); }
-    .footer { background: var(--color-ink); color: var(--color-paper); padding-block: var(--space-3xl) var(--space-xl); }
-    .footer__line { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 600; line-height: 1.03; letter-spacing: -0.035em; max-width: 22ch; }
-    .footer__meta { margin-top: var(--space-3xl); padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-neutral); display: flex; justify-content: space-between; gap: var(--space-md); color: var(--color-paper-3); font-size: var(--text-sm); }
-    .prototype { position: fixed; inset-inline-start: var(--space-md); inset-block-end: var(--space-md); z-index: var(--z-sticky); padding: 0.45rem 0.7rem; border-radius: var(--radius-pill); background: var(--color-accent); color: var(--color-accent-ink); font-family: var(--font-body); font-weight: 600; font-size: var(--text-xs); box-shadow: 0 1px 2px var(--color-shadow); }
-    @media (min-width: 40rem) {
-      .stage { grid-template-columns: 0.6fr 1.1fr 1.5fr; align-items: start; }
-      .outcome { grid-template-columns: 0.35fr 1fr 1.5fr; align-items: baseline; }
-      .compare__row { grid-template-columns: 0.9fr 1.6fr 0.6fr; align-items: baseline; }
-      .fit-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (min-width: 60rem) {
-      .hero { grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr); align-items: center; }
-      .premise__grid, .measure-grid, .fit-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-      .section-head { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: end; }
-      .commercial { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
-      .commercial .button { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
-    }
-    @media (max-width: 24rem) { .hero__actions { display: grid; } .hero__actions .button { width: 100%; } .score { grid-template-columns: 1fr; } .score__number { width: 6rem; height: 6rem; } .footer__meta { flex-direction: column; } }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; } }
-  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/clark-public-previews/30-day-claude-deployment/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/clark-public-previews/30-day-claude-deployment/favicon.png" />
+    <link rel="apple-touch-icon" href="/clark-public-previews/30-day-claude-deployment/favicon.png" />
+    
+    <!-- Default meta tags (overridden by react-helmet-async on each page) -->
+    <title>Transformative Studio — We Build AI-Native Vertical Ventures</title>
+    <meta name="description" content="We partner with deeply embedded operators to build AI-native companies that reshape how entire industries operate.">
+    <meta name="author" content="Transformative Studio" />
+    
+    <!-- Open Graph defaults -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Transformative Studio" />
+    
+    
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/YTtvnorpePTo8XOfCdB7QUTEZCm2/social-images/social-1774490429745-Gemini_Generated_Image_95olvt95olvt95ol.webp">
+    
+    <!-- Twitter defaults -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Transformative" />
+    
+    
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/YTtvnorpePTo8XOfCdB7QUTEZCm2/social-images/social-1774490429745-Gemini_Generated_Image_95olvt95olvt95ol.webp">
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Transformative Studio — We Build AI-Native Vertical Ventures">
+  <meta name="twitter:title" content="Transformative Studio — We Build AI-Native Vertical Ventures">
+  <meta property="og:description" content="We partner with deeply embedded operators to build AI-native companies that reshape how entire industries operate.">
+  <meta name="twitter:description" content="We partner with deeply embedded operators to build AI-native companies that reshape how entire industries operate.">
+  <script type="module" crossorigin src="/clark-public-previews/30-day-claude-deployment/assets/index-_c2ySgWV.js"></script>
+  <link rel="stylesheet" crossorigin href="/clark-public-previews/30-day-claude-deployment/assets/index-BUGAjy5S.css">
 </head>
-<body>
-  <header class="shell nav">
-    <a class="wordmark" href="#top" aria-label="Transformative, back to top">TRANSFORMATIVE / ADVISORY</a>
-    <a class="nav__cta" href="#fit">Check fit</a>
-  </header>
-
-  <main id="top">
-    <section class="shell hero">
-      <div class="hero__copy">
-        <p class="kicker">The 30-Day Claude Deployment</p>
-        <h1>Your team, operating on Claude.</h1>
-        <p class="hero__lede">We configure the environment, train every role against real work, install priority workflows, and measure the change. Thirty days from scattered experiments to a governed operating capability.</p>
-        <div class="hero__actions">
-          <a class="button button--solid" href="#fit">See if your team fits</a>
-          <a class="button" href="#method">View the 30-day plan</a>
-        </div>
-      </div>
-      <aside class="instrument" aria-label="Example AI readiness baseline">
-        <div class="instrument__top"><strong>Readiness baseline</strong><span>DAY 01</span></div>
-        <div class="score">
-          <div class="score__number"><span>38</span></div>
-          <div class="bars">
-            <div class="bar"><div class="bar__label"><span>Safe use</span><span>42</span></div><div class="bar__track"><div class="bar__fill" style="--w:42%"></div></div></div>
-            <div class="bar"><div class="bar__label"><span>Workflow fluency</span><span>31</span></div><div class="bar__track"><div class="bar__fill" style="--w:31%"></div></div></div>
-            <div class="bar"><div class="bar__label"><span>Repeatable practice</span><span>24</span></div><div class="bar__track"><div class="bar__fill" style="--w:24%"></div></div></div>
-          </div>
-        </div>
-        <p class="instrument__note">Illustrative interface. The real baseline combines employee evidence, observed work, and workspace usage data.</p>
-      </aside>
-    </section>
-
-    <section class="premise">
-      <div class="shell premise__grid">
-        <h2>Access is not deployment.</h2>
-        <div class="premise__copy">
-          <p>Buying seats gives people a tool. It does not tell them where Claude belongs in their work, what company information is safe to use, or how to produce a reliable result twice.</p>
-          <p><strong>Deployment means the behavior changed.</strong> People use Claude on real work, inside clear rules, through workflows the company can see and improve.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell workflow" id="method">
-      <div class="section-head">
-        <h2>Thirty days. Four operating moves.</h2>
-        <p>The assessment runs inside the deployment. Your people get practical capability now; leadership gets the evidence and backlog to decide what comes next.</p>
-      </div>
-      <ol class="stages">
-        <li class="stage"><span class="stage__time">DAYS 01–05</span><div><h3>Baseline the work.</h3><p>Interview leadership and a representative group of employees. Observe recurring tasks, current AI behavior, constraints, and the work people quietly route around.</p></div><div class="stage__output"><span>Output</span><strong>Readiness baseline + workflow map</strong></div></li>
-        <li class="stage"><span class="stage__time">DAYS 06–10</span><div><h3>Set the environment.</h3><p>Configure Claude Team or Enterprise, permissions, data rules, Projects, shared knowledge, and a small library of company-standard instructions.</p></div><div class="stage__output"><span>Output</span><strong>Governed Claude workspace</strong></div></li>
-        <li class="stage"><span class="stage__time">DAYS 11–23</span><div><h3>Change the work.</h3><p>Run role-based working sessions using live company tasks. Build and test a focused set of workflows with the people who will own them after we leave.</p></div><div class="stage__output"><span>Output</span><strong>Trained teams + working workflows</strong></div></li>
-        <li class="stage"><span class="stage__time">DAYS 24–30</span><div><h3>Prove and prioritize.</h3><p>Measure the movement, document what is sticking, and give leadership a ranked backlog tied to employee evidence, expected impact, feasibility, and ownership.</p></div><div class="stage__output"><span>Output</span><strong>Impact readout + executive backlog</strong></div></li>
-      </ol>
-    </section>
-
-    <section class="shell outcomes">
-      <div class="section-head"><h2>What exists on day 30.</h2><p>Not a recommendation deck. An operating layer your team is already using, plus a clear map of the next investments worth making.</p></div>
-      <div class="outcome-grid">
-        <article class="outcome"><span class="outcome__index">01</span><h3>A governed workspace</h3><p>Roles, permissions, data boundaries, administration, and a practical use policy.</p></article>
-        <article class="outcome"><span class="outcome__index">02</span><h3>A trained company</h3><p>Every participating role works through relevant tasks, not generic prompt exercises.</p></article>
-        <article class="outcome"><span class="outcome__index">03</span><h3>Working Claude workflows</h3><p>A focused set of reusable Projects, Skills, and instructions built around real recurring work.</p></article>
-        <article class="outcome"><span class="outcome__index">04</span><h3>Before-and-after evidence</h3><p>Capability, adoption, quality, and time-to-complete measured at the start and the end.</p></article>
-        <article class="outcome"><span class="outcome__index">05</span><h3>An employee-sourced backlog</h3><p>Opportunities traced to the people and work that surfaced them, scored for impact and feasibility.</p></article>
-        <article class="outcome"><span class="outcome__index">06</span><h3>Named internal owners</h3><p>Champions and operating rituals that keep improving the system after the deployment closes.</p></article>
-      </div>
-    </section>
-
-    <section class="measurement">
-      <div class="shell measure-grid">
-        <div class="measure-copy"><p class="kicker">The measurement model</p><h2>Measure changed work, not enthusiasm.</h2><p>A survey alone will tell you whether people liked the training. It will not tell you whether Claude changed the company. We combine reported confidence with observed tasks, workflow quality, and actual use.</p></div>
-        <div class="compare" role="table" aria-label="Measurement dimensions">
-          <div class="compare__row" role="row"><span class="compare__name" role="cell">Capability</span><span class="compare__method" role="cell">Can each role complete representative work safely and well?</span><span class="compare__when" role="cell">DAY 01 / 30</span></div>
-          <div class="compare__row" role="row"><span class="compare__name" role="cell">Adoption</span><span class="compare__method" role="cell">Is Claude showing up repeatedly in real workflows?</span><span class="compare__when" role="cell">WEEKLY</span></div>
-          <div class="compare__row" role="row"><span class="compare__name" role="cell">Efficiency</span><span class="compare__method" role="cell">Did selected tasks become faster without moving work downstream?</span><span class="compare__when" role="cell">BEFORE / AFTER</span></div>
-          <div class="compare__row" role="row"><span class="compare__name" role="cell">Quality</span><span class="compare__method" role="cell">Did outputs require less revision and meet the company standard?</span><span class="compare__when" role="cell">SAMPLED</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell fit" id="fit">
-      <div class="fit-grid">
-        <h2>Designed for a company small enough to move and large enough to compound.</h2>
-        <div class="fit-columns">
-          <div><p class="kicker">A strong fit</p><ul class="fit-list"><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m4 9 3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>25–250 knowledge workers</span></li><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m4 9 3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>An executive sponsor with authority to change how work happens</span></li><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m4 9 3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Teams willing to bring real work into the room</span></li></ul></div>
-          <div><p class="kicker">Not a fit</p><ul class="fit-list"><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4 4 14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>A company-wide software build disguised as a 30-day rollout</span></li><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4 4 14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Training without access to workflows or decision-makers</span></li><li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4 4 14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>A procurement deadline with no internal time committed</span></li></ul></div>
-        </div>
-      </div>
-      <div class="commercial">
-        <h3>One fixed engagement. A defined company cohort.</h3>
-        <p>The deployment is scoped by headcount, number of functions, interview access, and workflow complexity. The fee is fixed before work begins. Claude licenses are purchased directly by the client.</p>
-        <a class="button" href="#contact-note">Request a fit session</a>
-      </div>
-    </section>
-
-    <section class="shell faq" id="contact-note">
-      <h2>Questions leadership usually asks.</h2>
-      <details><summary>Is this training or implementation?<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3 9h12" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></summary><p>Both, but the unit of work is deployment. Training happens inside configured workflows, with governance and measurement around it. The goal is not that people understand Claude. The goal is that Claude becomes a useful, repeatable part of how the company works.</p></details>
-      <details><summary>Does every employee need the same program?<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3 9h12" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></summary><p>No. Everyone receives a common operating foundation. Role-based sessions then focus on the work, risks, and patterns relevant to each function. Executives, operators, sales, finance, and product should not receive the same workshop.</p></details>
-      <details><summary>What happens to the opportunity backlog?<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3 9h12" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></summary><p>The company owns it. Leadership can assign items internally, engage another partner, or continue with Transformative through a separate build-and-deploy cadence. The 30-day engagement stands on its own.</p></details>
-      <details><summary>Can you promise the whole team is “AI native” in 30 days?<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3 9h12" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></summary><p>No serious operator should promise a permanent culture change in a month. We can promise a governed environment, role-specific working sessions, deployed workflows, measured evidence, and internal owners. That is enough to move the company from access to operating capability.</p></details>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="shell"><p class="footer__line">The visible change is the product. The assessment is how we find what comes next.</p><div class="footer__meta"><span class="wordmark">TRANSFORMATIVE / ADVISORY</span><span>30-Day Claude Deployment · Offer prototype</span></div></div>
-  </footer>
-  <div class="prototype" aria-label="This page is a concept prototype">OFFER CONCEPT / V1</div>
-</body>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
